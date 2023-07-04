@@ -1,0 +1,19 @@
+{
+  "name": "multi_storey",
+  "version": "1.0.0",
+  "description": "P-Parking Multi-Storey Server",
+  "main": "app.js",
+  "bin": "app.js",
+  "scripts": {
+    "test": "echo \"Error: No Test Specified\" && exit 1"
+  },
+  "keywords": [
+    "multi_storey"
+  ],
+  "author": "LeeHongNin",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "net": "1.0.2"
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "tcp_port": 5021,
+    "db": {
+        "connectionLimit" : 80,
+        "connectTimeout" : 20000,
+        "acquireTimeout" : 20000,
+        "timeout" : 20000,
+        "host" : "localhost",
+        "user" : "root",
+        "password" : "Pp@rking",
+        "database" : "multi_storey"
+    }
+}
