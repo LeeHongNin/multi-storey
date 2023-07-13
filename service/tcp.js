@@ -3,6 +3,7 @@ const buffer = require('./buffer')
 const { executeQuery } = require('./dao')
 const { send } = require('./command')
 const { responses } = require('./response')
+const { broadcast } = require('./ws')
 
 const openConnection = (host, port) => {
     try {
@@ -38,7 +39,15 @@ const onData = async (buffer_, socket) => {
         const object = buffer.readStructure({ packet_type, data })
         const process = responses[packet_type].process ? await responses[packet_type].process({ ...object }) : object
         const replied_data = responses[packet_type].reply ? responses[packet_type].reply(process) : undefined
-        if (replied_data) socket.send({ packet_type, destination_id: source_id, replied_data })
+        if (replied_data) {
+            socket.send({ packet_type, destination_id: source_id, replied_data })
+            const level = await executeQuery('SELECT * FROM level')
+            if (!level || (level.length === undefined) || (level.length === 0)) {
+                broadcast({ type: 'storey', data: [] })
+            } else if (level.length > 1) {
+                broadcast({ type: 'storey', data: level })
+            }
+        }
     } catch (error) {
         console.log('TCP onData() Error', JSON.stringify(error))
         throw error
