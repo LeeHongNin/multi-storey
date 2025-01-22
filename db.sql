@@ -5,7 +5,7 @@ CREATE TABLE station (
     station_id INT UNSIGNED NOT NULL,
     host VARCHAR(32),
     port INT UNSIGNED,
-    is_it_connected tinyint UNSIGNED
+    is_it_connected TINYINT UNSIGNED
 );
 
 CREATE TABLE level (
